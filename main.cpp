@@ -1,12 +1,13 @@
 #include <iostream>
 using namespace std;
-#include "Vertex.h"
+#include "vertex.h"
 #include "polygon.h"
 
 int main()
 {
   Vertex varr[] = { Vertex(0,0), Vertex(6,0), 
                     Vertex(6,6), Vertex(0,6) };
+
   Polygon pol( varr, 4 );
   cout << "num:  " <<  pol.numVertices() << endl;
   cout << "yta:  " <<  pol.area() << endl;
@@ -27,5 +28,7 @@ int main()
   
   cout << "triangelyta: " << pol1.area() << endl;
 
+
   return 0;
+
 }

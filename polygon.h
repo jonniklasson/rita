@@ -1,20 +1,30 @@
-#pragma once
-#include "Vertex.h"
+#ifndef POLYGON_H
+#define POLYGON_H
+#include <array>
+#include "vertex.h"
+
 
 class Polygon : public Vertex 
 {
 public:
-
 	Polygon();		//default
 	Polygon(Vertex n[], int m);
 	~Polygon();
+	void draw();
+
+	void add(Vertex n);
 	int miny();
 	int maxy();
 	int minx();
 	int maxx();
-	int area();
+	float area();
 	int numVertices();
-	void add(Vertex n);
-	Vertex *arr;	//skapar pekare
-	int vertices;
+	int mn;
+	Vertex* p; 
+	int* my;
+	int* mx;
+	float ma;
+
+
 };
+#endif
