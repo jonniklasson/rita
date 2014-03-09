@@ -10,7 +10,6 @@ public:
 	Polygon();		//default
 	Polygon(Vertex n[], int m);
 	~Polygon();
-	void draw();
 
 	void add(Vertex n);
 	int miny();
