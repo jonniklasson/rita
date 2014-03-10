@@ -4,10 +4,11 @@
 
 class Vertex
 {
+int x;
+int y;
 public:
 	Vertex();		//default
 	Vertex(int n, int m);
-	int x, y;
 	~Vertex();
 };
 #endif

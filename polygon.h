@@ -6,6 +6,11 @@
 
 class Polygon : public Vertex 
 {
+	int mn;
+	Vertex* p; 
+	int* my;
+	int* mx;
+	float ma;
 public:
 	Polygon();		//default
 	Polygon(Vertex n[], int m);
@@ -18,12 +23,5 @@ public:
 	int maxx();
 	float area();
 	int numVertices();
-	int mn;
-	Vertex* p; 
-	int* my;
-	int* mx;
-	float ma;
-
-
 };
 #endif
