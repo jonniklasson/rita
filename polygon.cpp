@@ -11,8 +11,6 @@ void Polygon::add(Vertex n)
 	{
 		p = new vertex;
 	}
-
-
 }
 
 
@@ -27,7 +25,7 @@ Polygon::Polygon(Vertex n[], int k)
 	}
 }
 
-Polygon::Polygon(){	mn=0; mx = 0; my = 0;}
+Polygon::Polygon(){	mn = 0; p = nullptr;}
 
 Polygon::~Polygon()
 {

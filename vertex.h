@@ -8,8 +8,6 @@ public:
 	Vertex();		//default
 	Vertex(int n, int m);
 	~Vertex();
-	int getx();
-	int gety();
 };
 #endif
 
