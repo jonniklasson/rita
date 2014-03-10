@@ -5,8 +5,10 @@ class Vertex
 int x;
 int y;
 public:
+	int getx() const;
+	int gety() const;
 	Vertex();		//default
-	Vertex(int n, int m);
+	Vertex(int n, int m): x(n), y(m) {}
 	~Vertex();
 };
 #endif
