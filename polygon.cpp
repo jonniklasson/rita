@@ -7,62 +7,24 @@ using namespace std;
 
 void Polygon::add(Vertex n)
 {
-	int mn1 = mn;
-	mn++;
-	if (mn == 1) // initiera mx och my om det inte gjort
+	if (p == nullptr)
 	{
-	mx = new int[mn];
-	mx[0]=n.x;
-	my = new int[mn];
-	my[0]=n.y;
+		p = new vertex;
 	}
-	else
-	{
-	int *mxx = new int[mn];
-	int *myy = new int[mn];
-	for (int i = 0; i < mn; i++)
-	{
-		if (i < mn1) 
-		{
-			mxx[i]=mx[i];
-			myy[i]=my[i];
-		}
-		else 
-		{
-			mxx[i]=n.x;
-			myy[i]=n.y;
-		}
-				
-	}
-	mx = new int[mn];
-	my = new int[mn];
-	for (int i = 0; i < mn; i++)
-	{
-		mx[i]=mxx[i]; my[i]=myy[i];
-	}
-	}
+
+
 }
 
 
 // Constructors
 Polygon::Polygon(Vertex n[], int k)
-{
-	mn=k; 
-	
-	p  = new Vertex[mn];
-	mx = new int[mn];
-	my = new int[mn];
+{	
+	p  = new Vertex[k];
 	
 	for (int i = 0; i < mn; i++) 
 	{
 		p[i]=n[i];
 	}
-	
-	for (int i = 0; i < mn; i++) 
-		{
-			mx[i]=p[i].x;
-			my[i]=p[i].y;
-		}
 }
 
 Polygon::Polygon(){	mn=0; mx = 0; my = 0;}

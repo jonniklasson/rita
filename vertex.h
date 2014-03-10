@@ -1,7 +1,5 @@
 #ifndef VERTEX_H
 #define VERTEX_H
-
-
 class Vertex
 {
 int x;
@@ -10,6 +8,8 @@ public:
 	Vertex();		//default
 	Vertex(int n, int m);
 	~Vertex();
+	int getx();
+	int gety();
 };
 #endif
 
