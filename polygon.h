@@ -8,8 +8,9 @@ class Polygon : public Vertex
 	Vertex* p;
 	int m;
 	float ma;
-	int compare(char var, bool positive);
+
 public:
+	const Vertex & Vertex::operator=( const Vertex & a );
 	Polygon();		//default
 	Polygon(Vertex n[], int m);
 	~Polygon();
@@ -19,6 +20,6 @@ public:
 	int minx();
 	int maxx();
 	float area();
-	int numVertices();
+	int numVertices() const {return m;};
 };
 #endif

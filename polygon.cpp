@@ -5,39 +5,49 @@ using namespace std;
 #include "polygon.h" 
 #include "vertex.h"
 
+Vertex & Vertex::operator=(Vertex & arr)
+{
+  if (this != &arr)
+    {
+      delete[] p;
+      p = new double[m];
+ 
+      for(int i = 0; i < bufSize; i++)
+        {
+         p[i] = arr.array[i];
+        }
+    }
+  return *this;
+}
+
+
 void Polygon::add(Vertex n)
 {
 	m++;
-	if (p == nullptr)
-	{
-		p = new Vertex;
-		p[0] = n;
+	if (!p)
+	{	
+		p = new Vertex; p=0;
+		p = &n;
 	}
 	else {
-		Vertex * temp;
-		temp = new Vertex[sizeof(p)];
-		temp = p;
-		p = new Vertex[m];
-		for (int i = 0; i < m; i++) {
-			if (i == m-1) {
-				p[i]=n;
-			}
-			else {
-				p[i] = temp[i];
-			}
-			
+		Vertex* q;
+		q = new Vertex[m];
+		for (int i=0;i<m;i++) 
+		{
+			if (i == m-1) {q[i]=n;} else {q[i]=p[i];}
 		}
-		
-		delete[] temp;
+		p=q;
+		delete q; q=0;
 	}
+		
+		
 }
-
 
 // Constructors
 Polygon::Polygon(Vertex n[], int k)
 {	
 	m = k;
-	p  = new Vertex[k];
+	p  = new Vertex[m];
 	
 	for (int i = 0; i < m; i++) 
 	{
@@ -45,53 +55,49 @@ Polygon::Polygon(Vertex n[], int k)
 	}
 }
 
-Polygon::Polygon(){	m = 0;}
+Polygon::Polygon()
+{	
+	p = 0; //nollpekare;
+	m = 0;
+}
 
 Polygon::~Polygon()
 {
 	delete[] p;
 }
 
-int Polygon::compare(char n, bool positive) {
-	int temp = 0;
-	int check;
-		for (int i = 0; i < m; i++) 
-		{
-			if (i==0) { 
-				if (n == 'x') {temp = p[i].getx(); }
-				if (n == 'y') {temp = p[i].gety(); }
-			}
-			else 
-			{
-				if (n == 'x') {check = p[i].getx();}
-				if (n == 'y') {check = p[i].gety();}
-				if (positive = true) {
-						if ( temp < check ) {
-						temp=check;
-						}	
-				}
-				if (positive = false) {
-					if ( temp > check ) {
-					temp=check;
-					}	
-				}
-				
-			}
-		}
-		return temp;
-		}
-
+//utskrift
 int Polygon::miny(){
-	return compare('y',false);	
+	int temp;
+	for (int i=0;i<m;i++){
+		if (i==0) {temp = p[i].gety();}
+		if (p[i].gety() < temp) {temp = p[i].gety();}	
+	}
+	return temp;
 }
 int Polygon::maxy(){ 
-	return compare('y',true);	
+	int temp;
+	for (int i=0;i<m;i++){
+		if (i==0) {temp = p[i].gety();}
+		if (p[i].gety() > temp) {temp = p[i].gety();}	
+	}
+	return temp;	
 }
 int Polygon::minx(){
-	return compare('x',false);
+	int temp;
+	for (int i=0;i<m;i++){
+		if (i==0) {temp = p[i].getx();}
+		if (p[i].getx() < temp) {temp = p[i].getx();}	
+	}
+	return temp;	
 }
 int Polygon::maxx(){
-	return compare('x',true);
+	int temp;
+	for (int i=0;i<m;i++){
+		if (i==0) {temp = p[i].getx();}
+		if (p[i].getx() > temp) {temp = p[i].getx();}	
+	}
+	return temp;
 }
 float Polygon::area()
 {
@@ -102,13 +108,12 @@ float Polygon::area()
 	{
 		temp=0;
 		// körning m-1 använder inte p[i] då P[m] inte finns
-		// men kör då avslutande biten (sista, första vertex)
+		// men passar på att räkna med p[0] och P[m-1]
 		if (i == m-1) {
-			//(xn-1*y0 - x0*yn-1)/2
-			x2 = p[m-1].getx();
-			y2 = p[m-1].gety();
-			x1 = p[0].getx();
-			y1 = p[0].gety();		
+			x2 = p[0].getx();
+			y2 = p[0].gety();
+			x1 = p[m-1].getx();
+			y1 = p[m-1].gety();		
 		}
 		else {
 			x1 = p[i].getx();
@@ -116,13 +121,14 @@ float Polygon::area()
 			x2 = p[i+1].gety();
 			y2 = p[i+1].gety();
 		}
+		//(xn-1*y0 - x0*yn-1)/2
 		//(xi*yi+1 - xi+1*yi)/2
-		//(xi*yi+1 - xi+1*yi)/2
-		temp += x1*y2 - x2*y1;
+		temp += (x1*y2); 
+		temp -= (x2*y1);
 		temp /= 2;
 		temp = abs(temp);
 		ma += temp;
 	}
 	return ma;
 }
-int Polygon::numVertices(){ return m;}
+
