@@ -5,7 +5,7 @@
 class Polygon : public Vertex
 {
 public:
-	Polygon(Vertex n, int n);
+	Polygon(Vertex n[], int m);
 	Polygon();
 	~Polygon();
 

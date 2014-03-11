@@ -1,18 +1,21 @@
 #include "vertex.h"
 
 
-Vertex::Vertex(int n, int m): x(n), y(m) {};
+Vertex::Vertex(int n, int m): x(n), y(m) {}
 
 Vertex::Vertex(){}
 
-Vertex::~Vertex()
+Vertex::~Vertex(){}
+
+void Vertex::set_p    (Vertex *P_CLS) 
 {
+	//får en pekare till första positionen.
+	this->p = new Vertex[this->num];
+	for (int i=0;i<this->num;i++)
+	{
+		p[i] = P_CLS[i];		
+	}
 }
-
-void Vertex::set_p    (Vertex *P_CLS) {
-	
-
-};
 
 Vertex* Vertex::get_p () {return this->p;};
 
