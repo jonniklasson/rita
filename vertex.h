@@ -1,22 +1,19 @@
 #ifndef VERTEX_H
 #define VERTEX_H
+
 class Vertex
 {
-	int x;
-	int y;
-	const int m;
-	const vertex* p;
+	int x, y;
+	static Vertex *p;
+	static int num;
 public:
-	const Vertex & Vertex::operator=( const Vertex & a );
-	void setx(int n) {x=n;}
-	void sety(int n) {y=n;}
-	int getx() const;
-	int gety() const;
-	int getm() const;
-	int setm() const;
 	Vertex();		//default
-	Vertex(int n, int m);
+	Vertex(int n, int m);	
 	~Vertex();
+	void set_p    (Vertex *P_CLS);
+	Vertex* get_p ();
+	void set_num  (Vertex *P_CLS, int m);
+	int get_num   ();
 };
 #endif
 

@@ -10,15 +10,16 @@ int main()
 
   Polygon pol( varr, 4 );
   cout << "num:  " <<  pol.numVertices() << endl;
-  cout << "yta:  " <<  pol.area() << endl;
-  cout << "minx: " <<  pol.minx() << endl;
-  cout << "maxx: " <<  pol.maxx() << endl;
-  cout << "miny: " <<  pol.miny() << endl;
-  cout << "maxy: " <<  pol.maxy() << endl;
+  //cout << "yta:  " <<  pol.area() << endl;
+  //cout << "minx: " <<  pol.minx() << endl;
+  //cout << "maxx: " <<  pol.maxx() << endl;
+  //cout << "miny: " <<  pol.miny() << endl;
+  //cout << "maxy: " <<  pol.maxy() << endl;
 
-  pol.add( Vertex(-1,3) );
-  cout << "num:  " <<  pol.numVertices() << endl;
-  cout << "yta:  " <<  pol.area() << endl;
+  //pol.add( Vertex(-1,3) );
+  //cout << "num:  " <<  pol.numVertices() << endl;
+  //
+  /*cout << "yta:  " <<  pol.area() << endl;
   cout << "minx: " <<  pol.minx() << endl;
 
   Polygon pol1;
@@ -27,7 +28,7 @@ int main()
   pol1.add( Vertex(3,0) );
   
   cout << "triangelyta: " << pol1.area() << endl;
-
+*/
 
   return 0;
 

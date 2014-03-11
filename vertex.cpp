@@ -1,32 +1,24 @@
 #include "vertex.h"
-Vertex & Vertex::operator=(Vertex & arr)
+
+
+Vertex::Vertex(int n, int m): x(n), y(m) {};
+
+Vertex::Vertex(){}
+
+Vertex::~Vertex()
 {
-  if (this != &arr)
-    {
-      delete[] p;
-      p = new double[m];
- 
-      for(int i = 0; i < m; i++)
-        {
-         p[i] = arr.array[i];
-        }
-    }
-  return *this;
-}
-int getm() const;
-int setm() const;
-int Vertex::getx() const { return x;};
-int Vertex::gety() const { return y;};
-Vertex::Vertex(int n, int m)
-{
-	x = n; y=m;
-	p = new Vertex;
-}
-Vertex::Vertex()
-{
-	p=new Vertex;
-}
-Vertex::~Vertex() {
-	delete[] p;
 }
 
+void Vertex::set_p    (Vertex *P_CLS) {
+	
+
+};
+
+Vertex* Vertex::get_p () {return this->p;};
+
+void Vertex::set_num  (Vertex *P_CLS, int m) 
+{
+	P_CLS->num = m;
+}
+
+int Vertex::get_num   () {return this->num;};
