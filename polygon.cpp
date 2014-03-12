@@ -1,30 +1,139 @@
 #include <iostream>
 #include <cmath>
+#include <array>
 using namespace std;
 #include "polygon.h" 
 #include "vertex.h"
 
-Polygon::Polygon(Vertex n[], int m) 
-{
-	n[0].set_num(n,m);
-	n[0].set_p(&n[0]);
+void Polygon::add(Vertex v)
+{	//skapar exception
+		num++;
+		Vertex * temp;
+		temp = new Vertex[num];
+		temp = p;
+		delete[] p;
+		p = new Vertex[num];
+		for (int i = 0; i < num; i++) {
+			if (i == num-1) {
+				p[i]=v;
+			}
+			else {
+				p[i] = temp[i];
+			}
+
+		}
+
+		delete[] temp;
 
 }
-Polygon::Polygon() 
-{
-	// kan inte initiera Vertex i standard konstruktor for vertex
-	// då jag anv. statiska värden.
-	// gör därför detta i denna klass.
-	Vertex *p;
-	p= new Vertex;
-	Vertex empty;
-	p = &empty;
-	empty.set_num(p,0);
-	empty.set_p(p);
-}
-Polygon::~Polygon() {}
 
-int Polygon::numVertices()
+
+// Constructors
+Polygon::Polygon(Vertex n[], int k)
 {
-	return .get_num();
-};
+	num = k;
+	p  = new Vertex[k];
+
+	for (int i = 0; i < k; i++) 
+	{
+		p[i]=n[i];
+	}
+	
+}
+
+Polygon::Polygon(){ p = new Vertex; p=0; num=0;}
+
+Polygon::~Polygon()
+{
+	delete[] p;
+}
+
+int Polygon::miny(){
+		int temp = 0; int v;
+		for (int i = 0; i < num; i++) 
+		{
+			v = p[i].gety();
+			if (i==0) { temp = v;}
+			else 
+			{
+				if ( temp > v ) {
+					temp=v;
+				}
+			}
+		}
+		return temp;	
+}
+int Polygon::maxy(){ 
+		int temp = 0; int v;
+		for (int i = 0; i < num; i++) 
+		{
+			v = p[i].gety();
+			if (i==0) { temp = v;}
+			else 
+			{
+				if ( temp < v ) {
+					temp=v;
+				}
+			}
+		}
+		return temp;		
+}
+int Polygon::minx(){
+		int temp = 0; int v;
+		for (int i = 0; i < num; i++) 
+		{
+			v = p[i].getx();
+			if (i==0) { temp = v;}
+			else 
+			{
+				if ( temp > v ) {
+					temp=v;
+				}
+			}
+		}
+		return temp;		
+}
+int Polygon::maxx(){
+	int temp = 0; int v;
+		for (int i = 0; i < num; i++) 
+		{
+			v = p[i].getx();
+			if (i==0) { temp = v;}
+			else 
+			{
+				if ( temp < v ) {
+					temp=v;
+				}
+			}
+		}
+		return temp;		
+}
+
+float Polygon::area()
+{
+	float temp, ma = 0;
+	int x1, x2, y1, y2;
+
+	for (int i=0;i<num;i++)
+	{
+	if (i == num-1)
+	{
+	x1=p[0].getx();		y1=p[0].gety();
+	x2=p[num-1].getx();  y2=p[num-1].gety();	
+	} else {
+	x1=p[i].getx();		y1=p[i].gety();
+	x2=p[i+1].getx();  y2=p[i+1].gety();
+	}
+	//(xi*yi+1 - xi+1*yi)/2
+	//(xn-1*y0 - x0*yn-1)/2
+	temp = 0;
+	temp += x1*y2;
+	temp -= x2*y1;
+	temp /= 2;
+	temp = abs(temp);
+	ma += temp;
+	}
+
+	return ma;
+}
+int Polygon::numVertices(){ return num;}
