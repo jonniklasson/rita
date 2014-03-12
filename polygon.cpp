@@ -10,21 +10,15 @@ void Polygon::add(Vertex v)
 		num++;
 		Vertex * temp;
 		temp = new Vertex[num];
-		temp = p;
-		delete[] p;
-		p = new Vertex[num];
 		for (int i = 0; i < num; i++) {
 			if (i == num-1) {
-				p[i]=v;
+				temp[i]=v;
 			}
 			else {
-				p[i] = temp[i];
+				temp[i] = p[i];
 			}
-
-		}
-
-		delete[] temp;
-
+			}
+		p = temp;
 }
 
 
