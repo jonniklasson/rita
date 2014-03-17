@@ -35,7 +35,7 @@ Polygon::Polygon(Vertex n[], int k)
 	
 }
 
-Polygon::Polygon(){ p = new Vertex; p=0; num=0;}
+Polygon::Polygon(){num=0;}
 
 Polygon::~Polygon()
 {
